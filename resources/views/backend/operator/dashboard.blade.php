@@ -61,7 +61,9 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-green">
                     <div class="inner">
-                    <h3>{{ $waktu->waktu_awal }}</h3>
+                    <h3>@if (!empty($waktu))
+                        {{ $waktu->waktu_awal }}
+                    @endif</h3>
 
                     <p>Waktu Mulai</p>
                 </div>
@@ -75,7 +77,9 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-red">
                     <div class="inner">
-                    <h3>{{ $waktu->waktu_akhir }}</h3>
+                    <h3>@if (!empty($waktu))
+                        {{ $waktu->waktu_akhir }}
+                    @endif</h3>
 
                     <p>Waktu Selesai</p>
                 </div>
