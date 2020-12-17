@@ -46,7 +46,9 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>{{ $jadwal_detail->jadwal_detail }}</h3>
+                    <h3>@if (!empty($jadwal_detail))
+                        {{ $jadwal_detail->jadwal_detail }}
+                    @endif</h3>
 
                     <p>Tanggal Pemira</p>
                 </div>
