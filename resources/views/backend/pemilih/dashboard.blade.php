@@ -36,8 +36,9 @@
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item text-center" style="cursor: pointer">
-                                <b>Lihat Informasi Detail</b>
+                                <b>Visi</b>
                             </li>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit harum obcaecati iure perspiciatis doloremque sed impedit nulla ipsum. Velit odit quae voluptas voluptatem aliquid nobis saepe tenetur at sequi officia?</p>
                         </ul>
                         @if (count($sudah)>0)
                             <button disabled class="btn btn-primary btn-block"><i class="fa fa-check-circle"></i>&nbsp; Pilih</button>

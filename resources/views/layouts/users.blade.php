@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pemira Unib | Aplikasi Pemilihan Umum UNIB</title>
+  <title>Pemira Fmipa | Aplikasi Pemilihan Umum UNIB</title>
   <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -38,7 +38,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-            <a href="../../index2.html" class="navbar-brand"><b>Pemira</b>FMIPA</a>
+            <a href="{{ route('pemilih.dashboard') }}" class="navbar-brand"><b>Pemira</b>FMIPA</a>
           </button>
         </div>
 

@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/',function(){
+    return redirect()->route('pemilih.login');
+});
+Route::get('/operator',function(){
+    return redirect()->route('login');
+});
 Route::get('/login','PandaLoginController@showLoginForm')->name('pemilih.login');
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -49,7 +54,21 @@ Route::group(['prefix' => 'jadwal_pemira'], function () {
     Route::patch('/aktifkan_status/{id}','Operator\JadwalController@aktifkanStatus')->name('operator.jadwal.aktifkan_status');
 });
 
-Route::group(['prefix' => 'rekapitulasi'], function () {
-    Route::get('/keseluruhan','Operator\RekapController@laporanKeseluruhan')->name('operator.laporan.keseluruhan');
+Route::group(['prefix' => 'rekapitulasi_keseluruhan'], function () {
+    Route::get('/','Operator\RekapController@laporanKeseluruhan')->name('operator.laporan.keseluruhan');
+});
+
+Route::group(['prefix' => 'rekapitulasi_per_prodi'], function () {
     Route::get('/per_prodi','Operator\RekapController@laporanPerProdi')->name('operator.laporan.prodi');
+    Route::post('/per_prodi/cari_prodi','Operator\RekapController@cariProdi')->name('operator.laporan.cari_prodi');
+});
+
+Route::group(['prefix' => 'rekapitulasi_per_angkatan'], function () {
+    Route::get('/per_angkatan','Operator\RekapController@laporanPerAngkatan')->name('operator.laporan.angkatan');
+    Route::post('/per_angkatan/cari_angkatan','Operator\RekapController@cariAngkatan')->name('operator.laporan.cari_angkatan');
+});
+
+Route::group(['prefix' => 'rekapitulasi_per_jenjang'], function () {
+    Route::get('/per_jenjang','Operator\RekapController@laporanPerJenjang')->name('operator.laporan.jenjang');
+    Route::post('/per_jenjang/cari_jenjang','Operator\RekapController@cariJenjang')->name('operator.laporan.cari_jenjang');
 });

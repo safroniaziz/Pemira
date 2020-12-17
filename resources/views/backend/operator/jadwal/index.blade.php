@@ -47,6 +47,20 @@
                                                     <small class="form-text text-danger">{{ $errors->first('jadwal_detail') }}</small>
                                                 @endif
                                             </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Waktu Mulai</label>
+                                                <input type="time" name="waktu_awal" class="form-control @error('waktu_awal') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                @if ($errors->has('waktu_awal'))
+                                                    <small class="form-text text-danger">{{ $errors->first('waktu_awal') }}</small>
+                                                @endif
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Waktu Selesai</label>
+                                                <input type="time" name="waktu_akhir" class="form-control @error('waktu_akhir') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                @if ($errors->has('waktu_akhir'))
+                                                    <small class="form-text text-danger">{{ $errors->first('waktu_akhir') }}</small>
+                                                @endif
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Batalkan</button>
@@ -72,6 +86,8 @@
                                 <th>No</th>
                                 <th>Tahun Pemilihan</th>
                                 <th>Tahun Detail</th>
+                                <th>Jam Mulai</th>
+                                <th>Jam Selesai</th>
                                 <th>Status Jadwal</th>
                                 <th>Ubah Status</th>
                                 <th>Aksi</th>
@@ -86,6 +102,8 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $jadwal->tahun }}</td>
                                     <td>{{ $jadwal->jadwal_detail }}</td>
+                                    <td>{{ $jadwal->waktu_awal }}</td>
+                                    <td>{{ $jadwal->waktu_akhir }}</td>
                                     <td>
                                         @if ($jadwal->status_jadwal == "1")
                                             <label for="" class="label label-primary"><i class="fa fa-check-circle"></i>&nbsp;Aktif</label>

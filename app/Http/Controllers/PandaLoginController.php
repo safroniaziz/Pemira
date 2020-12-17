@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jadwal;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
@@ -10,7 +11,7 @@ class PandaLoginController extends Controller
 {
     public function pandaToken()
    	{
-    	$client = new Client();
+    	$client = new Client(['verify' =>false]);
 
         $url = 'https://panda.unib.ac.id/api/login';
 	      try {
@@ -60,6 +61,8 @@ class PandaLoginController extends Controller
 				// 	return redirect()->route('pemilih.login')->with(['error'	=> 'NIP Anda Tidak Terdaftar di Aplikasi !!']);
 				// }
 				// else{
+                    $jadwal = Jadwal::where('status_jadwal','1')->first();
+                    return $jadwal;
                     $pemilih = $this->panda($data_pemilih);
                     if($pemilih['mahasiswa'][0]['prodi']['fakultas']['fakKodeUniv'] == "F" && $pemilih['mahasiswa'][0]['mhsTanggalLulus'] == null){
                         Session::put('npm',$pemilih['mahasiswa'][0]['mhsNiu']);
@@ -87,22 +90,37 @@ class PandaLoginController extends Controller
             // if ($dosen == null) {
             //     return redirect()->route('pemilih.login')->with(['error'	=> 'NIP Anda Tidak Terdaftar di Aplikasi !!']);
             // }else{
-                $pemilih2 = $this->panda($data_pemilih);
-                if($pemilih2['mahasiswa'][0]['prodi']['fakultas']['fakKodeUniv'] == "F"){
-                    Session::put('npm',$pemilih2['mahasiswa'][0]['mhsNiu']);
-                    Session::put('nama',$pemilih2['mahasiswa'][0]['mhsNama']);
-                    Session::put('login',1);
-                    Session::put('akses',1);
-                    if (!empty(Session::get('akses')) && Session::get('akses',1)) {
-                        return redirect()->route('pemilih.dashboard');
+                $tgl=date('Y-m-d');
+                $jadwal = Jadwal::where('status_jadwal','1')->first();
+                $mytime = \Carbon\Carbon::now();
+                $now = $mytime->toTimeString();
+                if ($tgl == $jadwal->jadwal_detail) {
+                    if ($now > $jadwal->waktu_awal && $now < $jadwal->waktu_akhir) {
+                        $pemilih2 = $this->panda($data_pemilih);
+                        if($pemilih2['mahasiswa'][0]['prodi']['fakultas']['fakKodeUniv'] == "F"){
+                            Session::put('npm',$pemilih2['mahasiswa'][0]['mhsNiu']);
+                            Session::put('nama',$pemilih2['mahasiswa'][0]['mhsNama']);
+                            Session::put('login',1);
+                            Session::put('akses',1);
+                            if (!empty(Session::get('akses')) && Session::get('akses',1)) {
+                                return redirect()->route('pemilih.dashboard');
+                            }
+                            else{
+                                return redirect()->route('pemilih.login')->with(['error'	=> 'Username dan Password Salah !! !!']);
+                            }
+                        }
+                        else{
+                            return redirect()->route('pemilih.login')->with(['error'	=> 'Anda Bukan Dari Fakultas Mipa !! !!']);
+                        }
                     }
                     else{
-                        return redirect()->route('pemilih.login')->with(['error'	=> 'Username dan Password Salah !! !!']);
+                        return redirect()->route('pemilih.login')->with(['error'	=> 'Saat Ini Bukan Jadwal Pemira !! !!']);
                     }
                 }
                 else{
-                    return redirect()->route('pemilih.login')->with(['error'	=> 'Anda Bukan Dari Fakultas Mipa !! !!']);
+                    return redirect()->route('pemilih.login')->with(['error'	=> 'Saat Ini Bukan Jadwal Pemira !! !!']);
                 }
+                
             // }
         }
         else{
@@ -112,7 +130,7 @@ class PandaLoginController extends Controller
     }
 
     public function panda($query){
-        $client = new Client();
+        $client = new Client(['verify'  =>  false]);
         try {
             $response = $client->request(
                 'POST','https://panda.unib.ac.id/panda',

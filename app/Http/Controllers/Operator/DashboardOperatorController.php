@@ -24,9 +24,8 @@ class DashboardOperatorController extends Controller
                                 ->groupBy('kandidat_ketuas.id')
                                 ->get();
         $jadwal_detail = Jadwal::where('status_jadwal','1')->select('jadwal_detail')->first();
-        $operator = Count(User::where('status','1')->get());
-        $tahun = Carbon::createFromFormat('Y-m-d',$jadwal_detail->jadwal_detail)->year;
+        $waktu = Jadwal::where('status_jadwal','1')->first();
         $kandidat = Count(KandidatKetua::where('status_kandidat','1')->get());
-        return view('backend/operator.dashboard',compact('datas','jadwal_detail','operator','tahun','kandidat'));
+        return view('backend/operator.dashboard',compact('datas','jadwal_detail','waktu','kandidat'));
     }
 }

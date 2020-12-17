@@ -22,11 +22,15 @@ class JadwalController extends Controller
     public function post(Request $request){
         $this->validate($request,[
             'jadwal_detail' =>  'required',
+            'waktu_awal' =>  'required',
+            'waktu_akhir' =>  'required',
         ]);
 
         Jadwal::create([
             'tahun' =>  Carbon::createFromFormat('Y-m-d', $request->jadwal_detail)->year,
             'jadwal_detail' =>  $request->jadwal_detail,
+            'waktu_awal' =>  $request->waktu_awal,
+            'waktu_akhir' =>  $request->waktu_akhir,
         ]);
 
         return redirect()->route('operator.jadwal')->with(['success'    =>  'Jadwal Pemira Berhasil Ditambahkan !!']);
