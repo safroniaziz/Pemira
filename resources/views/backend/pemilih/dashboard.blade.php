@@ -30,15 +30,14 @@
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <label for="">Kandidat Nomor Urut  {{ $kandidat->no_urut }}</label>
-                        <img class="profile-user-img img-responsive" style="width: 100%" src="{{ asset('storage/'.$kandidat->banner) }}" alt="User profile picture">
-                        <h3 class="profile-username text-center">{{ $kandidat->nm_ketua }} <br> & <br> {{ $kandidat->nm_wakil }}</h3>
-
+                        
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item text-center" style="cursor: pointer">
-                                <b>Visi</b>
+                                <img class="profile-user-img img-responsive" style="width: 100%" src="{{ asset('storage/'.$kandidat->banner) }}" alt="User profile picture">
+                        <h3 class="profile-username text-center">{{ $kandidat->nm_ketua }} <br> & <br> {{ $kandidat->nm_wakil }}</h3>
+
                             </li>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit harum obcaecati iure perspiciatis doloremque sed impedit nulla ipsum. Velit odit quae voluptas voluptatem aliquid nobis saepe tenetur at sequi officia?</p>
                         </ul>
                         @if (count($sudah)>0)
                             <button disabled class="btn btn-primary btn-block"><i class="fa fa-check-circle"></i>&nbsp; Pilih</button>
