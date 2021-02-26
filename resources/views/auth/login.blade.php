@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-        <title>PEMIRA FMIPA Sejati | Login</title>
+        <title>Pemira Fakultas Teknik | Login</title>
         <link rel="shortcut icon" href="{{ asset('assets/login/images/logo.png') }}">
         <link href="{{ asset('assets/login/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href=" {{ asset('assets/login/style_login.css') }} ">

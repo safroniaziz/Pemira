@@ -8,8 +8,9 @@ use App\KandidatWakilKetua;
 use App\Http\Controllers\PandaLoginController;
 use App\Jadwal;
 use App\Rekapitulasi;
-use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class DashboardPemilihController extends Controller
 {
@@ -33,40 +34,52 @@ class DashboardPemilihController extends Controller
         }
     }
 
-    public function pemilihPost(Request $request, $id){
+    public function pemilihPost($id){
         $sesi = Session::get('akses');
         if(Session::get('login') && Session::get('login',1) && Session::get('akses',1)){
             if($sesi == 1){
-                $panda = new PandaLoginController();
-                $mahasiswa = '
-                    {mahasiswa(mhsNiu:"'.Session::get('npm').'") {
-                        mhsNiu
-                        mhsNama
-                        mhsAngkatan
-                        mhsJenisKelamin
-                        prodi {
-                            prodiNamaResmi
-                            prodiJjarKode
-                            fakultas {
-                                fakNamaResmi
+                DB::beginTransaction();
+                try {
+                    $sudah = Rekapitulasi::where('npm_pemilih',Session::get('npm'))->get();
+                    $panda = new PandaLoginController();
+                    $mahasiswa = '
+                        {mahasiswa(mhsNiu:"'.Session::get('npm').'") {
+                            mhsNiu
+                            mhsNama
+                            mhsAngkatan
+                            mhsJenisKelamin
+                            prodi {
+                                prodiNamaResmi
+                                prodiJjarKode
+                                fakultas {
+                                    fakNamaResmi
+                                }
                             }
-                        }
-                    }}
-                ';
-                $mahasiswas = $panda->panda($mahasiswa);
-                $jadwal_aktif = Jadwal::where('status_jadwal','1')->first();
-                Rekapitulasi::create([
-                    'kandidat_ketuas_id'    =>  $id, 
-                    'jadwal_id' =>    $jadwal_aktif->id,
-                    'npm_pemilih' =>    $mahasiswas['mahasiswa'][0]['mhsNiu'],  
-                    'prodi_pemilih' =>  $mahasiswas['mahasiswa'][0]['prodi']['prodiNamaResmi'],  
-                    'fakultas_pemilih' =>   $mahasiswas['mahasiswa'][0]['prodi']['fakultas']['fakNamaResmi'],  
-                    'angkatan_pemilih' =>   $mahasiswas['mahasiswa'][0]['mhsAngkatan'],  
-                    'jk_pemilik' =>     $mahasiswas['mahasiswa'][0]['mhsJenisKelamin'], 
-                    'jenjang' =>     $mahasiswas['mahasiswa'][0]['prodi']['prodiJjarKode'], 
-                ]);
-
-                return redirect()->route('pemilih.dashboard')->with(['success' =>  'Pilihan anda sudah disimpan !!']);
+                        }}
+                    ';
+                    $mahasiswas = $panda->panda($mahasiswa);
+                    $jadwal_aktif = Jadwal::where('status_jadwal','1')->first();
+                    if (count($sudah) > 0) {
+                        
+                    }
+                    else{
+                        Rekapitulasi::create([
+                            'kandidat_ketuas_id'    =>  $id, 
+                            'jadwal_id' =>    $jadwal_aktif->id,
+                            'npm_pemilih' =>    $mahasiswas['mahasiswa'][0]['mhsNiu'],  
+                            'prodi_pemilih' =>  $mahasiswas['mahasiswa'][0]['prodi']['prodiNamaResmi'],  
+                            'fakultas_pemilih' =>   $mahasiswas['mahasiswa'][0]['prodi']['fakultas']['fakNamaResmi'],  
+                            'angkatan_pemilih' =>   $mahasiswas['mahasiswa'][0]['mhsAngkatan'],  
+                            'jk_pemilik' =>     $mahasiswas['mahasiswa'][0]['mhsJenisKelamin'], 
+                            'jenjang' =>     $mahasiswas['mahasiswa'][0]['prodi']['prodiJjarKode'], 
+                        ]);
+                    }
+                    DB::commit();
+                    return redirect()->route('pemilih.dashboard')->with(['success' =>  'Pilihan anda sudah disimpan !!']);
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    return redirect()->route('pemilih.dashboard')->with(['error' =>  'Pilihan anda gagal disimpan !!']);
+                }
             }   
             else{
                 Session::flush();

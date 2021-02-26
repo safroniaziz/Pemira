@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-        <title>PEMIRA FMIPA | Login</title>
+        <title>Pemira Fakultas Teknik | Login</title>
         <link rel="shortcut icon" href="{{ asset('assets/login/images/logo.png') }}">
         <link href="{{ asset('assets/login/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href=" {{ asset('assets/login/style_login.css') }} ">
@@ -20,7 +20,7 @@
                     </div>
                     @else
                     <h6>Login Operator</h6>
-                    <p style="text-align:center; margin-bottom:20px;">Pemilihan Raya Matematika & Ilmu Pengetahuan Alam </p>
+                    <p style="text-align:center; margin-bottom:20px;">Pemilihan Raya Fakultas Teknik Universitas Bengkulu </p>
                 @endif
                 <form method="post" action="{{ route('panda.login.post') }}">
                     @csrf

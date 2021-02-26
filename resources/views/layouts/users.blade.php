@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pemira Fmipa | Aplikasi Pemilihan Umum UNIB</title>
+  <title>Pemira Fakultas Teknik </title>
   <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -38,7 +38,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-            <a href="{{ route('pemilih.dashboard') }}" class="navbar-brand"><b>Pemira</b>FMIPA</a>
+            <a href="{{ route('pemilih.dashboard') }}" class="navbar-brand"><b>Pemira</b>Fakultas Teknik</a>
           </button>
         </div>
 
@@ -97,8 +97,8 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          PEMIRA FMIPA
-          <small>Pemilihan Raya Periode 2020</small>
+          Pemira FT
+          <small>Pemilihan Raya Fakultas Teknik</small>
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard Pemilih</a></li>
@@ -115,7 +115,7 @@
         
         <div class="box box-default">
           <div class="box-header with-border">
-            <h3 class="box-title">Daftar Kandidat PEMIRA FMIPA 2020</h3>
+            <h3 class="box-title">Daftar Kandidat Pemira Fakultas Teknik 2020</h3>
           </div>
           <div class="box-body">
             @yield('content')

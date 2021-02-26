@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Pemira PEMIRA FMIPA | @yield('location')</title>
+  <title>Pemira Fakultas Teknik | @yield('location')</title>
   <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -44,7 +44,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><i class="fa fa-home"></i></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg" style="font-size:14px;"><b>Pemira </b>PEMIRA FMIPA</span>
+      <span class="logo-lg" style="font-size:14px;"><b>Pemira </b>Fakultas Teknik</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -123,8 +123,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        PEMIRA FMIPA
-        <small>SISTEM INFORMASI PEMILIHAN RAYA FMIPA</small>
+        PEMIRA FT
+        <small>SISTEM INFORMASI PEMILIHAN RAYA FAKULTAS TEKNIK</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-home"></i> Pemira</a></li>
@@ -144,9 +144,9 @@
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <a href="https://www.bankbengkulu.co.id/" target="_blank"><b>PEMIRA FMIPA</b></a>
+      <a href="https://www.bankbengkulu.co.id/" target="_blank"><b>Pemira Fakultas Teknik</b></a>
     </div>
-    <strong>Copyright &copy; 2019 <a href="ruangujung.com">RuangUjung.com</a>.</strong> All rights
+    <strong>Copyright &copy; 2019 <a href="ft.unib.ac.id">ft.unib.ac.id</a>.</strong> All rights
     reserved.
   </footer>
 

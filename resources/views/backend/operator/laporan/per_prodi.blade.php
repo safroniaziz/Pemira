@@ -64,17 +64,12 @@
                             <label for="exampleInputEmail1">Pilih Program Studi</label>
                             <select name="prodi" id="prodi" class="form-control">
                                 <option disabled selected>-- pilih program studi --</option>
-                                <option value="F0E0">Laboratorium Sains (D3)</option>
-                                <option value="F0G0">Kebidanan (D3)</option>
-                                <option value="F0H0">Keperawatan (D3)</option>
-                                <option value="F0I0">Farmasi (D3)</option>
-                                <option value="F1A0">Matematika (S1)</option>
-                                <option value="F1B0">Kimia (S1)</option>
-                                <option value="F1C0">Fisika (S1)</option>
-                                <option value="F1D0">Biologi (S1)</option>
-                                <option value="F1F0">Statistika (S1)</option>
-                                <option value="F1G0">Farmasi (S1)</option>
-                                <option value="F1H0">Geofisika (S1)</option>
+                                <option value="G1A0">Informatika</option>
+                                <option value="G1B0">Teknik Sipil</option>
+                                <option value="G1C0">Teknik Mesin</option>
+                                <option value="G1D0">Teknik Elektro</option>
+                                <option value="G1E0">Arsitektur</option>
+                                <option value="G1F0">Sistem Informasi</option>
                             </select>
                             @if ($errors->has('prodi'))
                                 <small class="form-text text-danger">{{ $errors->first('prodi') }}</small>
