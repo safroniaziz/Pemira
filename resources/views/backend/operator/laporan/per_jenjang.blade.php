@@ -135,7 +135,7 @@
                         <thead class="bg-primary">
                             <tr>
                                 <th>No</th>
-                                <th>Npm Pemilih</th>
+                                <th>Kode Pemilih</th>
                                 <th>Program Studi Pemilih</th>
                                 <th>Jenjang Pemilih</th>
                                 <th>Angkatan Pemilih</th>
@@ -150,7 +150,7 @@
                             @foreach ($laporans as $laporan)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $laporan->npm_pemilih }}</td>
+                                    <td>{{ md5($laporan->npm_pemilih) }}</td>
                                     <td>{{ $laporan->prodi_pemilih }}</td>
                                     <td>{{ $laporan->jenjang }}</td>
                                     <td>{{ $laporan->angkatan_pemilih }}</td>
