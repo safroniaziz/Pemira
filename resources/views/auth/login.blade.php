@@ -20,7 +20,7 @@
                     </div>
                     @else
                     <h6>Login Operator</h6>
-                    <p style="text-align:center; margin-bottom:20px;">Pemilihan Raya Matematika & Ilmu Pengetahuan Alam </p>
+                    <p style="text-align:center; margin-bottom:20px;">Pemilihan Raya Fakultas teknik Universitas Bengkulu </p>
                 @endif
                 <form method="post" action="{{ route('login') }}">
                     @csrf
